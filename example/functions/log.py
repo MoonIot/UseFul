@@ -1,13 +1,18 @@
-from UseFul import func_log
-from logbook.handlers import StreamHandler
+from UseFul import FunctionLog
+from logbook import StreamHandler
 from sys import stdout
 
 StreamHandler(stdout).push_application()
 
+func_log = FunctionLog('function')
 
-@func_log
+
+@func_log(info="88:88:88:88:88")
 def check(name, lastname, age=30):
-    check.log.info(f'{name=} {lastname=} {age=} {check.__dict__=}')
+    if isinstance(age, float):
+        check.error = True
+        check.log.info('age should be int')
+        return
     return (name, lastname, age,)
 
 
